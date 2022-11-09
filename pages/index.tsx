@@ -1,12 +1,16 @@
-import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Banner from "../components/Banner";
 import Header from "../components/Header";
-import axios, { Axios } from "axios";
+import axios from "axios";
 import requests from "../utils/requests";
 import { Movie } from "../typings";
 import Row from "../components/Row";
+import useAuth from "../hooks/useAuth";
+import { modalState } from "../atoms/modalAtoms";
+import { useRecoilValue } from "recoil";
+import Modal from "../components/ModalCom";
+import ModalCom from "../components/ModalCom";
 interface Props {
   netflixOriginals: Movie[];
   trendingNow: Movie[];
@@ -27,10 +31,13 @@ const Home = ({
   topRated,
   trendingNow,
 }: Props) => {
+  const { loading } = useAuth();
+  const showModal = useRecoilValue(modalState);
+
   return (
     <div className="relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh]">
       <Head>
-        <title>Create Next App</title>
+        <title>Netflix Clone</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
@@ -47,6 +54,7 @@ const Home = ({
           <Row title="Documentaries" movies={documentaries} />
         </section>
       </main>
+      {showModal && <ModalCom />}
     </div>
   );
 };
