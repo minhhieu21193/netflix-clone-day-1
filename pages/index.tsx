@@ -6,7 +6,6 @@ import axios from "axios";
 import requests from "../utils/requests";
 import { Movie } from "../typings";
 import Row from "../components/Row";
-import useAuth from "../hooks/useAuth";
 import { modalState } from "../atoms/modalAtoms";
 import { useRecoilValue } from "recoil";
 import Modal from "../components/ModalCom";
@@ -31,7 +30,6 @@ const Home = ({
   topRated,
   trendingNow,
 }: Props) => {
-  const { loading } = useAuth();
   const showModal = useRecoilValue(modalState);
 
   return (
