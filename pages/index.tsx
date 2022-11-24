@@ -52,7 +52,7 @@ const Home = ({
           <Row title="Documentaries" movies={documentaries} />
         </section>
       </main>
-      {showModal && <ModalCom />}
+      {/* {showModal && <ModalCom />} */}
     </div>
   );
 };
